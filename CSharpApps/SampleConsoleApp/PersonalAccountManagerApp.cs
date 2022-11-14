@@ -34,7 +34,7 @@ namespace SampleConsoleApp
         }
 
 
-        public void AddNewExpense(Expense ex)
+        public void AddNewExpense(string desc, int amount, DateTime date)
         {
             for (int i = 0; i < size; i++)
             {
@@ -42,7 +42,7 @@ namespace SampleConsoleApp
                 {
                     allExpenses[i] = new Expense
                     {
-                        Amount = ex.Amount, Description = ex.Description, Date = ex.Date
+                        Amount = amount, Description = desc, Date = date
                     };
                     return;//exit the loop after the insertion is completed. 
                 }
@@ -67,6 +67,17 @@ namespace SampleConsoleApp
             }
         }
 
+
+        public Expense GetExpenseDetails(int id)
+        {
+            //Iterate thru the loop, find the first occurance of the Expense with matching id, return the Expense.
+            for (int i = 0; i < size; i++)
+            {
+                if ((allExpenses[i] != null) && (allExpenses[i].ExpenseID == id))
+                    return allExpenses[i];
+            }
+            throw new Exception("No record found!!!");
+        }
         public void UpdateExpense(int id, Expense newDetails)
         {
             for (int i = 0; i < size; i++)
@@ -110,13 +121,39 @@ namespace SampleConsoleApp
                     addNewExpense();
                     return true;
                 case 2:
+                    updateExpense();
+                    return true;
                 case 3:
+                    deleteExpense();
+                    return true;
                 case 4:
                     displayAllRecords();
                     return true;
                 default:
                     return false;
             }
+        }
+
+        private static void deleteExpense()
+        {
+            var id = int.Parse(Util.GetString("Enter the Id of the expense to delete"));
+            mgr.DeleteExpense(id);
+            Console.WriteLine("Expense deleted successfully to the System!!!!");
+        }
+
+        private static void updateExpense()
+        {
+            //Get the current expense.
+            var id = int.Parse(Util.GetString("Enter the Id of the expense to update"));
+            var desc = Util.GetString("Enter the Description details of the Expense");
+            var amount = int.Parse(Util.GetString("Enter the Amount of the expense"));
+            var date = Util.GetDate();
+            var expense = mgr.GetExpenseDetails(id);
+            expense.Description = desc;
+            expense.Date = date;
+            expense.Amount = amount;
+            mgr.UpdateExpense(id, expense);
+            Console.WriteLine("Expense added successfully to the System!!!!");
         }
 
         private static void displayAllRecords()
@@ -134,8 +171,7 @@ namespace SampleConsoleApp
             var desc = Util.GetString("Enter the Description details of the Expense");
             var amount = int.Parse(Util.GetString("Enter the Amount of the expense"));
             var date = Util.GetDate();
-            var expense = new Expense { Amount = amount, Date = date, Description = desc };
-            mgr.AddNewExpense(expense);
+            mgr.AddNewExpense(desc, amount, date);
             Console.WriteLine("Expense added successfully to the System!!!!");
         }
     }
