@@ -1,0 +1,6 @@
+﻿~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MY EXPENSE MANAGER~~~~~~~~~~~~~~~~~~~
+TO ADD NEW EXPENSE---------------->PRESS 1
+TO UPDATE EXPENSE----------------->PRESS 2
+TO DELETE EXPENSE----------------->PRESS 3
+TO DISPLAY ALL EXPENSES----------->PRESS 4
+PS: ANY OTHER KEY IS CONSIDERED AS EXIT...........................
