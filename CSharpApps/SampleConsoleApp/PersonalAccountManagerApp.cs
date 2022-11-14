@@ -93,7 +93,6 @@ namespace SampleConsoleApp
             }
         }
 
-
     }
 
     class PersonalAccountManagerApp
