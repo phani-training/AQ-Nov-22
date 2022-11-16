@@ -1,0 +1,8 @@
+﻿~~~~~~~~~~~~~~~~~~~~~~~~~~EMPLOYEE MANAGER APP~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TO ADD NEW EMPLOYEE---------------------->PRESS A
+TO FIND EMPLOYEE BY ID------------------->PRESS I
+TO FIND BY NAME-------------------------->PRESS N
+TO UPDATE A RECORD----------------------->PRESS R
+TO DELETE A RECORD----------------------->PRESS D
+PS:ANY OTHER KEY WILL EXIT THE APP
+-----------------------------------------------------------------------------
