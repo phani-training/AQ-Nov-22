@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SampleWebApp.Site" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="align-content:center; text-align:center">
+            <h1 style="text-align: center; color:Highlight">ASP.NET Web Training for AQ</h1>
+            <hr />
+        <asp:Menu runat="server" Orientation="Horizontal" Font-Names="Poppins SemiBold" Font-Size="Large">
+            <Items>
+                <asp:MenuItem Text="Home" NavigateUrl="~/HomePage.aspx" />
+                <asp:MenuItem Text="Database App" NavigateUrl="~/DatabaseApp.aspx" />
+                <asp:MenuItem Text="User Registration" NavigateUrl="~/User Registration.aspx" />
+                <asp:MenuItem Text="Master Page Demo" NavigateUrl="~/ChildContent.aspx" />
+                <asp:MenuItem Text="StateManagement">
+                    <asp:MenuItem Text="QueryString" />
+                    <asp:MenuItem Text="Cookies" />
+                    <asp:MenuItem Text="Session" />
+                    <asp:MenuItem Text="Application" />
+                </asp:MenuItem>
+                <asp:MenuItem Text="DataBound Controls" />
+                <asp:MenuItem Text="Login" />
+                <asp:MenuItem Text="Cache" />
+            </Items>
+            <StaticMenuItemStyle BorderStyle="Solid" />
+            <StaticMenuStyle BorderColor="#FF0066" BorderStyle="Solid" />
+        </asp:Menu>      
+        </div>
+        <div>
+            <table style="width:100%">
+                <tr>
+                    <td style="width:70%">
+                        <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                            <h2>Some content that will be modified by the actual Child Page</h2>
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <td style="width:25%">
+                        <asp:AdRotator runat="server" AdvertisementFile="~/Ads.xml" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
