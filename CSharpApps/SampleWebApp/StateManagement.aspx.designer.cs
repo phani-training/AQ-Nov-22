@@ -11,25 +11,34 @@ namespace SampleWebApp
 {
 
 
-    public partial class RecipiantPage
+    public partial class StateManagement
     {
 
         /// <summary>
-        /// lblContent control.
+        /// productDB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContent;
+        protected global::System.Web.UI.WebControls.Repeater productDB;
 
         /// <summary>
-        /// lblCookies control.
+        /// FormView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCookies;
+        protected global::System.Web.UI.WebControls.FormView FormView1;
+
+        /// <summary>
+        /// lstRecent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList lstRecent;
     }
 }

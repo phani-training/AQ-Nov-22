@@ -11,25 +11,25 @@ namespace SampleWebApp
 {
 
 
-    public partial class RecipiantPage
+    public partial class CookiesExample
     {
 
         /// <summary>
-        /// lblContent control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContent;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// lblCookies control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCookies;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
     }
 }

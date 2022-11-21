@@ -1,0 +1,13 @@
+﻿body {
+    margin:2px;
+    padding:2px;
+    color:darkblue;
+    background-color:lightblue;
+    font-size:20pt;
+}
+
+.section {
+    display: inline-block;
+    width: 45%;
+    vertical-align:top;
+}

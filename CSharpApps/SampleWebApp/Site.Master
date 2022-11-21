@@ -3,6 +3,7 @@
 <html>
 <head runat="server">
     <title></title>
+    <link href="MainStyle.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,8 +18,8 @@
                 <asp:MenuItem Text="Master Page Demo" NavigateUrl="~/ChildContent.aspx" />
                 <asp:MenuItem Text="StateManagement">
                     <asp:MenuItem Text="QueryString" NavigateUrl="~/QueryStringExample.aspx" />
-                    <asp:MenuItem Text="Cookies" />
-                    <asp:MenuItem Text="Session" />
+                    <asp:MenuItem Text="Cookies" NavigateUrl="~/CookiesExample.aspx" />
+                    <asp:MenuItem Text="Session" NavigateUrl="~/StateManagement.aspx" />
                     <asp:MenuItem Text="Application" />
                 </asp:MenuItem>
                 <asp:MenuItem Text="DataBound Controls" />

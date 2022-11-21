@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CC0C6B8D-CEE7-41F1-910B-B7074B3C4B3C}</ProjectGuid>
+    <ProjectGuid>{C1B320BC-1302-4EBE-8FB7-5142F5E5F2E1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -44,10 +44,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SampleLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SampleLibrary\bin\Debug\SampleLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,15 +68,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ads.xml" />
+    <Content Include="airtel.jpg" />
     <Content Include="Assets\airtel.jpg" />
     <Content Include="Assets\Karnataka-Tourism.png" />
     <Content Include="Assets\Running.gif" />
     <Content Include="ChildContent.aspx" />
+    <Content Include="CookiesExample.aspx" />
     <Content Include="DatabaseApp.aspx" />
     <Content Include="Global.asax" />
     <Content Include="HomePage.aspx" />
+    <Content Include="MainStyle.css" />
     <Content Include="QueryStringExample.aspx" />
     <Content Include="RecipiantPage.aspx" />
+    <Content Include="StateManagement.aspx" />
     <Content Include="User Registration.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -91,6 +91,13 @@
     </Compile>
     <Compile Include="ChildContent.aspx.designer.cs">
       <DependentUpon>ChildContent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CookiesExample.aspx.cs">
+      <DependentUpon>CookiesExample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CookiesExample.aspx.designer.cs">
+      <DependentUpon>CookiesExample.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatabaseApp.aspx.cs">
       <DependentUpon>DatabaseApp.aspx</DependentUpon>
@@ -109,6 +116,7 @@
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryStringExample.aspx.cs">
       <DependentUpon>QueryStringExample.aspx</DependentUpon>
@@ -131,6 +139,13 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="StateManagement.aspx.cs">
+      <DependentUpon>StateManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StateManagement.aspx.designer.cs">
+      <DependentUpon>StateManagement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User Registration.aspx.cs">
       <DependentUpon>User Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,7 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleLibrary\SampleLibrary.csproj">
+      <Project>{8a4eae8d-bed2-4154-81fd-1bad7d477bf1}</Project>
+      <Name>SampleLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -166,7 +186,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51172</DevelopmentServerPort>
+          <DevelopmentServerPort>62046</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:51172/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
