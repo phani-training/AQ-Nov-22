@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-
 
 namespace SampleLibrary
 {
@@ -20,6 +18,8 @@ namespace SampleLibrary
     namespace Data
     {
         using Entities;
+        using System.Configuration;
+
         public interface IEmployeeDB
         {
             void AddNewEmployee(Employee emp);
@@ -27,17 +27,20 @@ namespace SampleLibrary
             void DeleteEmployee(int id);
             List<Employee> FindEmployee(string empName);
             Employee FindEmployee(int id);
+
+            List<Employee> GetEmployees();
         }
 
         class EmployeeDB : IEmployeeDB
         {
             #region CONSTANTS
-            const string CONNECTIONSTRING = @"Data Source=.\SQLEXPRESS;Initial Catalog=AQInsightsDB;Integrated Security=True";
+            string CONNECTIONSTRING = ConfigurationManager.ConnectionStrings["myCon"].ConnectionString;
             const string DELETE_QUERY = "DELETE FROM EMPTABLE WHERE ID = @id";
             const string UPDATE_QUERY = "UPDATE EMPTABLE SET EmpName = @name, EmpAddress = @address, EmpSalary = @salary WHERE Id = @id";
             const string SELECT_BYNAME = "SELECT * FROM EMPTABLE WHERE EMPNAME LIKE %@name%";
             const string SELECT_BYID = "SELECT * FROM EMPTABLE WHERE ID = @id";
             const string INSERT_QUERY = "Insert into EmpTable values(@name, @address, @salary)";
+            const string SELECTALL_QUERY = "SELECT * FROM EMPTABLE";
             #endregion
 
             public void AddNewEmployee(Employee emp)
@@ -122,6 +125,29 @@ namespace SampleLibrary
                 throw new EmployeeException("No employee found with this ID");
             }
 
+            public List<Employee> GetEmployees()
+            {
+                List<Employee> allEmpList = new List<Employee>();
+                using (var con = new SqlConnection(CONNECTIONSTRING))
+                {
+                    var cmd = new SqlCommand(SELECTALL_QUERY, con);
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var emp = new Employee
+                        {
+                            EmpAddress = reader[2].ToString(),
+                            EmpId = Convert.ToInt32(reader[0]),
+                            EmpName = reader[1].ToString(),
+                            EmpSalary = Convert.ToDouble(reader[3])
+                        };
+                        allEmpList.Add(emp);
+                    }
+                }
+                return allEmpList;
+            }
+
             public void UpdateEmployee(Employee emp)
             {
                 using (var con = new SqlConnection(CONNECTIONSTRING))
@@ -138,7 +164,6 @@ namespace SampleLibrary
                 }
             }
         }
-
 
         public static class EmployeeFactory
         {

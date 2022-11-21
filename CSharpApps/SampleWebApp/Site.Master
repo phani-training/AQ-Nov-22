@@ -16,7 +16,7 @@
                 <asp:MenuItem Text="User Registration" NavigateUrl="~/User Registration.aspx" />
                 <asp:MenuItem Text="Master Page Demo" NavigateUrl="~/ChildContent.aspx" />
                 <asp:MenuItem Text="StateManagement">
-                    <asp:MenuItem Text="QueryString" />
+                    <asp:MenuItem Text="QueryString" NavigateUrl="~/QueryStringExample.aspx" />
                     <asp:MenuItem Text="Cookies" />
                     <asp:MenuItem Text="Session" />
                     <asp:MenuItem Text="Application" />
