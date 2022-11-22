@@ -1,0 +1,19 @@
+﻿@model SampleMvcApp.Models.EmpTable
+
+@{
+    ViewBag.Title = "ViewRec";
+}
+
+<h2>Details of the Employee to Edit</h2>
+<hr />
+@using (Html.BeginForm("UpdateRec", "Crud"))
+{ 
+    <p>Employee ID: @Html.EditorFor(m => m.Id)</p>
+    <p>Employee Name: @Html.EditorFor(m => m.EmpName)</p>
+    <p>Employee Address: @Html.EditorFor(m => m.EmpAddress)</p>
+    <p>Employee Salary: @Html.EditorFor(m => m.EmpSalary)</p>
+    <p>
+        <button>Save Changes</button>
+    </p>
+}
+
