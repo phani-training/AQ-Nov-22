@@ -37,11 +37,16 @@ namespace SampleWebApp
                 //Get the Selected Product.
                 var allData = Application["AllData"] as List<Product>;
                 var selectedProduct = allData.Find((p) => p.ProductId == id);
-                FormView1.DataSource = new List<Product> { selectedProduct };
+                FormView1.DataSource = new List<Product> { selectedProduct };//DataSource needs a Collection, So make it as a collection and set it. 
                 FormView1.DataBind();
 
                 //Get the Session data of Recent list.
                 var recent = Session["recent"] as Queue<Product>;
+                if(recent == null)
+                {
+                    Session["recent"] = new Queue<Product>();
+                    recent = Session["recent"] as Queue<Product>;
+                }
                 if(recent.Count == 5)
                 {
                     recent.Dequeue();

@@ -22,9 +22,9 @@
                     <asp:MenuItem Text="Session" NavigateUrl="~/StateManagement.aspx" />
                     <asp:MenuItem Text="Application" />
                 </asp:MenuItem>
-                <asp:MenuItem Text="DataBound Controls" />
+                <asp:MenuItem Text="OutputCache" NavigateUrl="~/CachingPage.aspx" />
                 <asp:MenuItem Text="Login" />
-                <asp:MenuItem Text="Cache" />
+                <asp:MenuItem Text="Cache" NavigateUrl="~/DataCaching.aspx" />
             </Items>
             <StaticMenuItemStyle BorderStyle="Solid" />
             <StaticMenuStyle BorderColor="#FF0066" BorderStyle="Solid" />

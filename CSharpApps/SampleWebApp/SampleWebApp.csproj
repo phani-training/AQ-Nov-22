@@ -72,9 +72,13 @@
     <Content Include="Assets\airtel.jpg" />
     <Content Include="Assets\Karnataka-Tourism.png" />
     <Content Include="Assets\Running.gif" />
+    <Content Include="CachingPage.aspx" />
     <Content Include="ChildContent.aspx" />
     <Content Include="CookiesExample.aspx" />
     <Content Include="DatabaseApp.aspx" />
+    <Content Include="DataCaching.aspx" />
+    <Content Include="DependencyFile.txt" />
+    <Content Include="FragmentPage.ascx" />
     <Content Include="Global.asax" />
     <Content Include="HomePage.aspx" />
     <Content Include="MainStyle.css" />
@@ -85,6 +89,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachingPage.aspx.cs">
+      <DependentUpon>CachingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CachingPage.aspx.designer.cs">
+      <DependentUpon>CachingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChildContent.aspx.cs">
       <DependentUpon>ChildContent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,6 +116,20 @@
     </Compile>
     <Compile Include="DatabaseApp.aspx.designer.cs">
       <DependentUpon>DatabaseApp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DataCaching.aspx.cs">
+      <DependentUpon>DataCaching.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DataCaching.aspx.designer.cs">
+      <DependentUpon>DataCaching.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FragmentPage.ascx.cs">
+      <DependentUpon>FragmentPage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FragmentPage.ascx.designer.cs">
+      <DependentUpon>FragmentPage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
