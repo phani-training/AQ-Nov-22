@@ -1,0 +1,8 @@
+﻿.part {
+    display: inline-block;
+    width: 15%;
+    border: 2px solid lightBlue;
+    padding: 5px;
+    margin: 5px;
+    vertical-align:top;
+}

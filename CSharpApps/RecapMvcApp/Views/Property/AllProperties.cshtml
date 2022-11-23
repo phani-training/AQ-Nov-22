@@ -1,0 +1,21 @@
+﻿@model List<RecapMvcApp.Models.PropertyTable>
+
+@{
+    ViewBag.Title = "AllProperties";
+}
+<h1>Enlisted Properties with Us....</h1>
+<hr />
+@foreach(var prop in Model)
+{
+    <div class="part">
+        <h2>@prop.PropertyOwner</h2>
+        <hr />
+        <p>Address: @prop.PropertyAddress</p>
+        <p>Type: @prop.PropertyTypeTable.PropertyType</p>
+        <p>Current Status: @prop.PropertyStatus</p>
+        <p>
+            @Html.ActionLink("View", "OnView", new { id = prop.PropertyId})
+        </p>
+    </div>
+}
+

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AQInsightsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PropertyTable">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyOwner" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PropertyAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="PropertyTypeId" Type="int" Nullable="false" />
+          <Property Name="PropertyStatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyTypeTable">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="PropertyType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PropertyTable_PropertyTypeTable">
+          <End Role="PropertyTypeTable" Type="Self.PropertyTypeTable" Multiplicity="1" />
+          <End Role="PropertyTable" Type="Self.PropertyTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyTypeTable">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="PropertyTable">
+              <PropertyRef Name="PropertyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AQInsightsDBModelStoreContainer">
+          <EntitySet Name="PropertyTable" EntityType="Self.PropertyTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTypeTable" EntityType="Self.PropertyTypeTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PropertyTable_PropertyTypeTable" Association="Self.FK_PropertyTable_PropertyTypeTable">
+            <End Role="PropertyTypeTable" EntitySet="PropertyTypeTable" />
+            <End Role="PropertyTable" EntitySet="PropertyTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AQInsightsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PropertyTable">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PropertyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PropertyTypeTable" Relationship="Self.FK_PropertyTable_PropertyTypeTable" FromRole="PropertyTable" ToRole="PropertyTypeTable" />
+        </EntityType>
+        <EntityType Name="PropertyTypeTable">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PropertyTables" Relationship="Self.FK_PropertyTable_PropertyTypeTable" FromRole="PropertyTypeTable" ToRole="PropertyTable" />
+        </EntityType>
+        <Association Name="FK_PropertyTable_PropertyTypeTable">
+          <End Role="PropertyTypeTable" Type="Self.PropertyTypeTable" Multiplicity="1" />
+          <End Role="PropertyTable" Type="Self.PropertyTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyTypeTable">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="PropertyTable">
+              <PropertyRef Name="PropertyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AQInsightsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PropertyTables" EntityType="Self.PropertyTable" />
+          <EntitySet Name="PropertyTypeTables" EntityType="Self.PropertyTypeTable" />
+          <AssociationSet Name="FK_PropertyTable_PropertyTypeTable" Association="Self.FK_PropertyTable_PropertyTypeTable">
+            <End Role="PropertyTypeTable" EntitySet="PropertyTypeTables" />
+            <End Role="PropertyTable" EntitySet="PropertyTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AQInsightsDBModelStoreContainer" CdmEntityContainer="AQInsightsDBEntities">
+          <EntitySetMapping Name="PropertyTables">
+            <EntityTypeMapping TypeName="AQInsightsDBModel.PropertyTable">
+              <MappingFragment StoreEntitySet="PropertyTable">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="PropertyOwner" ColumnName="PropertyOwner" />
+                <ScalarProperty Name="PropertyAddress" ColumnName="PropertyAddress" />
+                <ScalarProperty Name="PropertyTypeId" ColumnName="PropertyTypeId" />
+                <ScalarProperty Name="PropertyStatus" ColumnName="PropertyStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTypeTables">
+            <EntityTypeMapping TypeName="AQInsightsDBModel.PropertyTypeTable">
+              <MappingFragment StoreEntitySet="PropertyTypeTable">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
