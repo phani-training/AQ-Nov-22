@@ -1,8 +1,8 @@
-Project Details:
-Application: MVC Application
-Project Name: Travel-Blog App
+# Project Details:
+- Application: MVC Application
+- Project Name: Travel-Blog App
 
-Requirement: 
+## Requirement: 
 1. Users should be able to post their travel experiences
 2. Users should see the latest blogs
 3. Users should have a login page to register.
