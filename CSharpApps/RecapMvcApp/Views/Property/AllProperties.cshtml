@@ -5,6 +5,12 @@
 }
 <h1>Enlisted Properties with Us....</h1>
 <hr />
+<p>
+    @if (TempData.ContainsKey("Message"))
+    {
+        <p>@TempData["Message"]</p>
+    }
+</p>
 @foreach(var prop in Model)
 {
     <div class="part">

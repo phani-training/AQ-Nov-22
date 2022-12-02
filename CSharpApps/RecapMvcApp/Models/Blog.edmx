@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TravelAppDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TravelDate" Type="date" Nullable="false" />
+          <Property Name="Details" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ImageBlogTable">
+          <Key>
+            <PropertyRef Name="EntryId" />
+          </Key>
+          <Property Name="EntryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogId" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Blog__UserId__276EDEB3">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImageBlog__BlogI__2B3F6F97">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+          <End Role="ImageBlogTable" Type="Self.ImageBlogTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="BlogId" />
+            </Principal>
+            <Dependent Role="ImageBlogTable">
+              <PropertyRef Name="BlogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelAppDemoModelStoreContainer">
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageBlogTable" EntityType="Self.ImageBlogTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Blog__UserId__276EDEB3" Association="Self.FK__Blog__UserId__276EDEB3">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImageBlog__BlogI__2B3F6F97" Association="Self.FK__ImageBlog__BlogI__2B3F6F97">
+            <End Role="Blog" EntitySet="Blog" />
+            <End Role="ImageBlogTable" EntitySet="ImageBlogTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TravelAppDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogId" />
+          </Key>
+          <Property Name="BlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TravelDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK__Blog__UserId__276EDEB3" FromRole="Blog" ToRole="UserTable" />
+          <NavigationProperty Name="ImageBlogTables" Relationship="Self.FK__ImageBlog__BlogI__2B3F6F97" FromRole="Blog" ToRole="ImageBlogTable" />
+        </EntityType>
+        <EntityType Name="ImageBlogTable">
+          <Key>
+            <PropertyRef Name="EntryId" />
+          </Key>
+          <Property Name="EntryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogId" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK__ImageBlog__BlogI__2B3F6F97" FromRole="ImageBlogTable" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Blogs" Relationship="Self.FK__Blog__UserId__276EDEB3" FromRole="UserTable" ToRole="Blog" />
+        </EntityType>
+        <Association Name="FK__Blog__UserId__276EDEB3">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImageBlog__BlogI__2B3F6F97">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
+          <End Role="ImageBlogTable" Type="Self.ImageBlogTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="BlogId" />
+            </Principal>
+            <Dependent Role="ImageBlogTable">
+              <PropertyRef Name="BlogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelAppDemoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogs" EntityType="Self.Blog" />
+          <EntitySet Name="ImageBlogTables" EntityType="Self.ImageBlogTable" />
+          <EntitySet Name="UserTables" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK__Blog__UserId__276EDEB3" Association="Self.FK__Blog__UserId__276EDEB3">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImageBlog__BlogI__2B3F6F97" Association="Self.FK__ImageBlog__BlogI__2B3F6F97">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="ImageBlogTable" EntitySet="ImageBlogTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelAppDemoModelStoreContainer" CdmEntityContainer="TravelAppDemoEntities">
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="TravelAppDemoModel.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TravelDate" ColumnName="TravelDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageBlogTables">
+            <EntityTypeMapping TypeName="TravelAppDemoModel.ImageBlogTable">
+              <MappingFragment StoreEntitySet="ImageBlogTable">
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="TravelAppDemoModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -18,6 +18,12 @@ namespace RecapMvcApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Property", action = "AllProperties", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Blog",
+                url: "Blog/{action}/{id}",
+                defaults: new { controller = "Blog", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

@@ -12,7 +12,7 @@
 <hr />
 <div class="md-col-6">
     @using (Html.BeginForm()) { 
-    
+        <p>@Html.HiddenFor(m=>m.PropertyId)</p>
         <h3>Name: @Html.EditorFor(m => m.PropertyOwner)</h3>
         <p>Address: @Html.EditorFor(m => m.PropertyAddress)</p>
         <p>Status: @Html.DropDownListFor(m=> m.PropertyStatus, statusList)</p>
