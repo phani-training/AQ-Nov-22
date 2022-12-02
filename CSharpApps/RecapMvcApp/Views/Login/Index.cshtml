@@ -12,8 +12,15 @@
 <nav>
     @Ajax.ActionLink("Login", "SignIn", options)
     @Ajax.ActionLink("Register", "Register", options)
+    @Ajax.ActionLink("All Blogs", "AllBlogs", "Blog", options)
+    @Ajax.ActionLink("New Blog", "AddNew","Blog", options)
 </nav>
 <div id="divArea">
-
+    @if(TempData["ErrorInfo"] != null)
+        {
+            <p style="color:red">
+                @TempData["ErrorInfo"]
+            </p>
+        }
 </div>
 

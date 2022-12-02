@@ -1,0 +1,33 @@
+﻿@model List<RecapMvcApp.Models.Blog>
+@{
+    var options = new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divArea"
+    };
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered table-stripped">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div>
+                                <h2>@item.Title</h2>
+                                <hr />
+                                <p>
+                                    @item.Details
+                                </p>
+                                <p>
+                                    @Ajax.ActionLink("View More....","Display", new { id = item.BlogId }, options )
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

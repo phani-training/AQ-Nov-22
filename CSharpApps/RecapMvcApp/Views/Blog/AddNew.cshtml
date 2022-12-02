@@ -1,0 +1,22 @@
+﻿@model RecapMvcApp.Models.Blog
+
+<div>
+    <h2>Post UR Blog Here!!!</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m=>m.UserId)
+        <p>
+            Enter the Title: @Html.EditorFor(m => m.Title)
+        </p>
+        <p>
+            Enter the Details: @Html.EditorFor(m => m.Details)
+        </p>
+
+        <p>
+            Enter the Date: 
+            @Html.EditorFor(m=>m.TravelDate)
+        </p>
+        <button>Save Changes</button>
+    }
+</div>
